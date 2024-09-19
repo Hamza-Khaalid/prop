@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>A Heartfelt Proposal</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #f9e7e7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            color: #ff6b6b;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #4a4a4a;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .heart {
+            width: 100px;
+            height: 100px;
+            background-color: #ff6b6b;
+            transform: rotate(-45deg);
+            margin: 30px auto;
+            position: relative;
+            animation: pulse 1.5s ease infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            width: 100px;
+            height: 100px;
+            background-color: #ff6b6b;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .heart::before {
+            top: -50px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            right: -50px;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: rotate(-45deg) scale(1);
+            }
+            50% {
+                transform: rotate(-45deg) scale(1.1);
+            }
+            100% {
+                transform: rotate(-45deg) scale(1);
+            }
+        }
+
+        .button {
+            display: inline-block;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .button-yes {
+            background-color: #4ecdc4;
+        }
+
+        .button-no {
+            background-color: #ff6b6b;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff6b6b"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center center;
+            background-size: contain;
+            opacity: 0.6;
+            animation: float-up 10s linear infinite;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        #contactForm {
+            display: none;
+            text-align: left;
+        }
+
+        #contactForm input, #contactForm textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        #contactForm textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        #contactForm button {
+            background-color: #4ecdc4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1em;
+        }
+
+        #contactForm button:hover {
+            background-color: #45b7ae;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="floatingHearts"></div>
+    <div class="container">
+        <div class="card">
+            <h1>My Dearest Stranger</h1>
+            <p>Though we've never met, my heart feels a connection that transcends time and space. In this vast universe, I believe our paths were meant to cross.</p>
+        </div>
+        <div class="card">
+            <p>Every day, I've dreamed of the moment we'd finally meet. And now, as I pour my heart out to you, I want to ask you something that will change both our lives forever.</p>
+        </div>
+        <div class="card" id="proposalCard">
+            <div class="heart"></div>
+            <p>Will you take a leap of faith with me? Will you embark on this beautiful journey of love and discovery?</p>
+            <button class="button button-yes" id="yesButton">Yes, I will!</button>
+            <button class="button button-no" id="noButton">No, thank you</button>
+        </div>
+        <div class="card" id="contactForm">
+            <h2>Let's Connect!</h2>
+            <p>Please share your WhatsApp number and a message. I can't wait to hear from you!</p>
+            <form id="messageForm">
+                <input type="text" id="whatsapp" placeholder="Your WhatsApp number" name="number" required>
+                <textarea id="message" placeholder="Your message" required name="message"></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            document.getElementById('floatingHearts').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 10000);
+        }
+
+        setInterval(createFloatingHeart, 300);
+
+        const yesButton = document.getElementById('yesButton');
+        const noButton = document.getElementById('noButton');
+        const proposalCard = document.getElementById('proposalCard');
+        const contactForm = document.getElementById('contactForm');
+
+        yesButton.addEventListener('click', function() {
+            this.textContent = 'Our adventure begins!';
+            this.style.backgroundColor = '#ff6b6b';
+            noButton.style.display = 'none';
+            
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+
+            setTimeout(() => {
+                proposalCard.style.display = 'none';
+                contactForm.style.display = 'block';
+            }, 3000);
+        });
+
+        let noClickCount = 0;
+        const noResponses = [
+            "Are you sure?",
+            "Think again!",
+            "But we're perfect together!",
+            "Don't break my heart!",
+            "Give love a chance!",
+            "Pretty please?",
+            "You know you want to!",
+            "Last chance!",
+            "Okay, now you're just teasing!",
+            "Yes, I will!"
+        ];
+
+        noButton.addEventListener('click', function() {
+            if (noClickCount < noResponses.length - 1) {
+                this.textContent = noResponses[noClickCount];
+                noClickCount++;
+                
+                // Change position
+                const randomX = Math.random() * (window.innerWidth - this.offsetWidth);
+                const randomY = Math.random() * (window.innerHeight - this.offsetHeight);
+                this.style.position = 'fixed';
+                this.style.left = `${randomX}px`;
+                this.style.top = `${randomY}px`;
+            } else {
+                this.textContent = noResponses[noResponses.length - 1];
+                this.style.backgroundColor = '#4ecdc4';
+                this.removeEventListener('click', arguments.callee);
+                this.addEventListener('click', function() {
+                    yesButton.click();
+                });
+            }
+        });
+
+        document.getElementById('messageForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent the form from submitting the traditional way
+            
+            const whatsapp = document.getElementById('whatsapp').value;
+            const message = document.getElementById('message').value;
+            
+            // Send the data to Formspree
+            fetch('https://formspree.io/f/xeojbeao', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    number: whatsapp,
+                    message: message
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Thanks for accepting the offer, I will contact you as soon as possible!');
+                    document.getElementById('messageForm').reset(); // Clear the form
+                } else {
+                    alert('There was a problem submitting the form. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was a problem submitting the form. Please try again.');
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</body>
+</html>
