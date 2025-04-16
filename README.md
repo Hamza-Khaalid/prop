@@ -47,7 +47,6 @@ open index.html <br>
 ## 🚀 Future Enhancements
 
 - Add animations to button movement (e.g., easing, bounce effects)
-- Add mobile responsiveness for better small-screen experience
 - Use custom fonts or background music to enhance the proposal vibe
 - Add option to customize the message and recipient’s name
 - Save responses to a backend or database
