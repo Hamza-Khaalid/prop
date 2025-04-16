@@ -15,7 +15,7 @@
 
 ## 🌐 Live Demo
 
-🔗 [Proposal Webpage on Vercel](https://prop-theta.vercel.app)
+🔗 [Proposal Webpage on Vercel](https://digitalproposal.netlify.app/)
 
 ---
 
